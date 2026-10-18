@@ -1,0 +1,51 @@
+--- Product List Management ---
+1. Insert Product
+2. Display Products
+3. Search Product
+4. Delete Product
+5. Exit
+Enter your choice: 1
+
+Enter Product ID: 101
+Enter Product Name: Pen
+Enter Product Price: 10
+Product inserted successfully!
+
+--- Product List Management ---
+Enter your choice: 1
+
+Enter Product ID: 102
+Enter Product Name: Book
+Enter Product Price: 50
+Product inserted successfully!
+
+--- Product List Management ---
+Enter your choice: 2
+
+Product List:
+ID: 101, Name: Pen, Price: 10
+ID: 102, Name: Book, Price: 50
+
+--- Product List Management ---
+Enter your choice: 3
+
+Enter Product ID to search: 102
+Product Found!
+Name: Book
+Price: 50
+
+--- Product List Management ---
+Enter your choice: 4
+
+Enter Product ID to delete: 101
+Product deleted successfully!
+
+--- Product List Management ---
+Enter your choice: 2
+
+Product List:
+ID: 102, Name: Book, Price: 50
+
+--- Product List Management ---
+Enter your choice: 5
+Exiting program.
