@@ -1,0 +1,116 @@
+#include <iostream>
+#include <vector>
+#include <stack>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *left, *right;
+
+    Node(int value)
+    {
+        data = value;
+        left = right = NULL;
+    }
+};
+
+// Recursive Inorder
+void recursiveInorder(Node *root, vector<int> &result)
+{
+    if (root == NULL)
+        return;
+
+    recursiveInorder(root->left, result);
+    result.push_back(root->data);
+    recursiveInorder(root->right, result);
+}
+
+// Iterative Inorder
+vector<int> iterativeInorder(Node *root, int &maxStack)
+{
+    vector<int> result;
+    stack<Node*> s;
+    Node *current = root;
+
+    maxStack = 0;
+
+    while (current != NULL || !s.empty())
+    {
+        while (current != NULL)
+        {
+            s.push(current);
+
+            if ((int)s.size() > maxStack)
+                maxStack = s.size();
+
+            current = current->left;
+        }
+
+        current = s.top();
+        s.pop();
+
+        result.push_back(current->data);
+        current = current->right;
+    }
+
+    return result;
+}
+
+// Test Function
+void testTree(Node *root, string name)
+{
+    vector<int> r;
+    recursiveInorder(root, r);
+
+    int maxStack;
+    vector<int> i = iterativeInorder(root, maxStack);
+
+    cout << "\nTest: " << name << endl;
+
+    cout << "Recursive: ";
+    for (int x : r)
+        cout << x << " ";
+
+    cout << "\nIterative: ";
+    for (int x : i)
+        cout << x << " ";
+
+    cout << "\nMaximum Stack Size: "
+         << maxStack << endl;
+
+    if (r == i)
+        cout << "Comparison: PASS" << endl;
+    else
+        cout << "Comparison: FAIL" << endl;
+}
+
+int main()
+{
+    // Empty Tree
+    testTree(NULL, "Empty Tree");
+
+    // Single Node Tree
+    Node *single = new Node(10);
+    testTree(single, "Single Node Tree");
+
+    // Balanced Tree
+    Node *balanced = new Node(4);
+    balanced->left = new Node(2);
+    balanced->right = new Node(6);
+    balanced->left->left = new Node(1);
+    balanced->left->right = new Node(3);
+    balanced->right->left = new Node(5);
+    balanced->right->right = new Node(7);
+
+    testTree(balanced, "Balanced Tree");
+
+    // Left-Skewed Tree
+    Node *skewed = new Node(3);
+    skewed->left = new Node(2);
+    skewed->left->left = new Node(1);
+
+    testTree(skewed, "Skewed Tree");
+
+    return 0;
+}
