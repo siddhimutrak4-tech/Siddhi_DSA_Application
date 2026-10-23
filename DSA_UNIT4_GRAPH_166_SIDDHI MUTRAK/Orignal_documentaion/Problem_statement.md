@@ -1,1 +1,0 @@
-Develop a C++ program to represent computers and network links as a graph. Record the number of computers reachable from a selected source, remove a selected link to simulate failure, and apply BFS or DFS again to determine which computers remain reachable.
